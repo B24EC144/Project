@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ascend | Learn Smarter</title>
+    <meta name="description" content="Transform your notes into a smarter study experience.">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+
+    <header class="topbar">
+        <a class="brand" href="#" id="homeButton">
+            <span class="brand-mark">A</span>
+            <span>Ascend</span>
+        </a>
+
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            Your Study Companion
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- LANDING PAGE -->
+        <section id="landingPage">
+            <section class="hero">
+                <div class="hero-logo">
+                    <span class="brand-mark big-mark">A</span>
+                    <h1>Ascend<span class="period">.</span></h1>
+                </div>
+
+                <p class="eyebrow">YOUR NOTES, REIMAGINED</p>
+
+                <h2>
+                    Turn Your Notes Into<br>
+                    <span class="gradient-text">Step-by-Step Learning</span>
+                </h2>
+
+                <p class="subtitle">
+                    Upload your notes and transform them into revision
+                    guides, quizzes, and personalized study materials.
+                </p>
+            </section>
+
+            <section class="upload-card" id="dropZone">
+                <div class="upload-inner">
+                    <div class="upload-icon" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M13 31H10a8 8 0 0 1-1-16 15 15 0 0 1 29 4 7 7 0 0 1 0 14h-3"
+                                  stroke="currentColor" stroke-width="2.8"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M24 40V23m-7 7 7-7 7 7"
+                                  stroke="currentColor" stroke-width="2.8"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+
+                    <h3>Upload Your Notes</h3>
+
+                    <p class="upload-description">
+                        Drag and drop your file here, or click to browse
+                    </p>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept=".pdf,.png,.jpg,.jpeg,.webp,.txt"
+                        hidden
+                    >
+
+                    <button class="upload-button" id="uploadButton" type="button">
+                        Choose File
+                    </button>
+
+                    <p class="file-support">
+                        PDF, JPG, PNG, WEBP, TXT <span>·</span> Max 15 MB
+                    </p>
+
+                    <div id="fileDetails" class="file-details" hidden>
+                        <span>✦</span>
+                        <span id="fileName"></span>
+                    </div>
+
+                    <p id="message" class="message" role="status" aria-live="polite"></p>
+
+                    <button id="continueButton" class="organize-button" disabled>
+                        Continue to Study Tools →
+                    </button>
+                </div>
+            </section>
+
+            <section class="features">
+                <article class="feature">
+                    <div class="feature-icon purple">☷</div>
+                    <h4>Step-by-Step</h4>
+                    <p>Organization</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon pink">✳</div>
+                    <h4>Helpful</h4>
+                    <p>Explanations</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon orange">☆</div>
+                    <h4>Key Points</h4>
+                    <p>& Highlights</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-icon teal">ϟ</div>
+                    <h4>Better</h4>
+                    <p>Revision</p>
+                </article>
+            </section>
+        </section>
+
+        <!-- STUDY WORKSPACE -->
+        <section id="workspace" hidden>
+            <div class="workspace-heading">
+                <button class="back-button" id="backButton">← Home</button>
+
+                <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+                <h2>Let's <span class="gradient-text">Level Up.</span></h2>
+
+                <p class="subtitle">
+                    Choose how you want to study your uploaded material.
+                </p>
+
+                <div class="selected-file">
+                    <span>📄</span>
+                    <span id="workspaceFileName">No file selected</span>
+                </div>
+            </div>
+
+            <div class="tool-grid">
+                <button class="tool-card syllabus-card" data-tool="syllabus">
+                    <span class="tool-icon">🔍</span>
+                    <span class="tool-title">Syllabus Gap</span>
+                    <span class="tool-description">
+                        Compare your syllabus against your notes.
+                    </span>
+                    <span class="tool-action">Check coverage →</span>
+                </button>
+
+                <button class="tool-card notes-card" data-tool="notes">
+                    <span class="tool-icon">📚</span>
+                    <span class="tool-title">Generate Notes</span>
+                    <span class="tool-description">
+                        Create structured notes with explanations and key points.
+                    </span>
+                    <span class="tool-action">Organize notes →</span>
+                </button>
+
+                <button class="tool-card quiz-card" data-tool="quiz">
+                    <span class="tool-icon">📝</span>
+                    <span class="tool-title">Generate Quiz</span>
+                    <span class="tool-description">
+                        Test your understanding and discover weak topics.
+                    </span>
+                    <span class="tool-action">Start a quiz →</span>
+                </button>
+
+                <button class="tool-card flashcard-card" data-tool="flashcards">
+                    <span class="tool-icon">🃏</span>
+                    <span class="tool-title">Flashcards</span>
+                    <span class="tool-description">
+                        Practise definitions and important concepts.
+                    </span>
+                    <span class="tool-action">Create cards →</span>
+                </button>
+
+                <button class="tool-card revision-card" data-tool="revision">
+                    <span class="tool-icon">⚡</span>
+                    <span class="tool-title">Quick Revision</span>
+                    <span class="tool-description">
+                        Make a concise last-minute revision sheet.
+                    </span>
+                    <span class="tool-action">Revise quickly →</span>
+                </button>
+
+                <button class="tool-card progress-card" data-tool="progress">
+                    <span class="tool-icon">📊</span>
+                    <span class="tool-title">My Progress</span>
+                    <span class="tool-description">
+                        Review your scores, study checklist, and saved materials.
+                    </span>
+                    <span class="tool-action">View progress →</span>
+                </button>
+            </div>
+
+            <!-- TOOL OPTIONS -->
+            <section id="toolPanel" class="panel" hidden>
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">ASCEND STUDY TOOL</p>
+                        <h3 id="toolTitle">Study Tool</h3>
+                    </div>
+                    <button id="closeToolButton" class="icon-button" aria-label="Close tool">✕</button>
+                </div>
+
+                <div id="syllabusOptions" hidden>
+                    <label for="syllabusInput">Your syllabus</label>
+                    <textarea id="syllabusInput" rows="7"
+                        placeholder="Paste your syllabus topics here..."></textarea>
+
+                    <label for="syllabusFile">Or upload a syllabus file</label>
+                    <input type="file" id="syllabusFile"
+                        accept=".txt,.pdf,.png,.jpg,.jpeg,.webp">
+
+                    <button class="primary-button" data-run="syllabus">
+                        Compare Syllabus
+                    </button>
+                </div>
+
+                <div id="quizOptions" hidden>
+                    <div class="form-grid">
+                        <div>
+                            <label for="difficulty">Difficulty</label>
+                            <select id="difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                                <option value="mixed">Mixed</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="questionType">Question type</label>
+                            <select id="questionType">
+                                <option value="multiple_choice">Multiple choice</option>
+                                <option value="true_false">True or false</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="questionCount">Number of questions</label>
+                            <select id="questionCount">
+                                <option value="5">5 questions</option>
+                                <option value="10">10 questions</option>
+                                <option value="15">15 questions</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="primary-button" data-run="quiz">
+                        Generate Quiz
+                    </button>
+                </div>
+
+                <div id="generalOptions">
+                    <p id="toolHelp">
+                        Your selected study material will be processed by the local AI.
+                    </p>
+
+                    <button class="primary-button" id="runGeneralButton">
+                        Generate
+                    </button>
+                </div>
+
+                <div id="loading" class="loading" hidden>
+                    <div class="spinner"></div>
+                    <p>Ascend is preparing your study material...</p>
+                    <p class="muted">This may take a little while.</p>
+                </div>
+
+                <p id="toolMessage" class="message" role="status" aria-live="polite"></p>
+            </section>
+
+            <!-- RESULTS -->
+            <section id="resultsPanel" class="panel" hidden>
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">YOUR STUDY MATERIAL</p>
+                        <h3 id="resultTitle">Results</h3>
+                    </div>
+                </div>
+
+                <div id="resultContent" class="result-content"></div>
+
+                <div class="result-actions">
+                    <button class="secondary-button" id="copyButton">Copy</button>
+                    <button class="secondary-button" id="downloadButton">Download .txt</button>
+                    <button class="secondary-button" id="saveButton">Save Material</button>
+                </div>
+            </section>
+
+            <!-- PROGRESS DASHBOARD -->
+            <section id="progressPanel" class="panel" hidden>
+                <p class="eyebrow">YOUR LEARNING JOURNEY</p>
+                <h3>Progress Dashboard</h3>
+
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <span>Quizzes completed</span>
+                        <strong id="quizTotal">0</strong>
+                    </article>
+
+                    <article class="stat-card">
+                        <span>Average quiz score</span>
+                        <strong id="averageScore">0%</strong>
+                    </article>
+
+                    <article class="stat-card">
+                        <span>Saved materials</span>
+                        <strong id="savedTotal">0</strong>
+                    </article>
+                </div>
+
+                <h4>Revision checklist</h4>
+                <p class="muted">
+                    Add topics you want to revise, then update their status.
+                </p>
+
+                <form id="checklistForm" class="checklist-form">
+                    <input id="topicInput" type="text"
+                        placeholder="Enter a topic to revise" maxlength="120" required>
+
+                    <button class="primary-button" type="submit">Add Topic</button>
+                </form>
+
+                <div id="checklistItems" class="checklist-items"></div>
+
+                <h4>Saved study materials</h4>
+                <div id="savedMaterials" class="saved-materials"></div>
+
+                <button class="secondary-button" id="weakPracticeButton">
+                    Practise My Weak Topics
+                </button>
+            </section>
+        </section>
+
+        <footer>
+            <span>ASCEND</span>
+            <span class="footer-dot">•</span>
+            Learn Smarter
+            <span class="footer-dot">•</span>
+            Grow Faster
+        </footer>
+    </main>
+</body>
+</html>
